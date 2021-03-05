@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './App.css';
 import themes from './themes.js'
-// import PokeCard from './components/PokeCard'
-// import SearchInput from './components/SearchInput'
+import PokeCard from './components/PokeCard'
+import SearchInput from './components/SearchInput'
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends Component {
     })
   }
 
-  formatPokename(name) {
+  formatPokename = (name) => {
     let pokemonName = name.toLowerCase()
     
     if (pokemonName.indexOf(' ') >= 0) {
@@ -42,8 +42,20 @@ class App extends Component {
     })
   }
 
+  setInput = (value) => {
+    this.setState({
+      input: value
+    })
+  }
+
   componentDidMount() {
     this.getPokemonData()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.pokename !== this.state.pokename) {
+      this.getPokemonData()
+    }
   }
 
   render() {
@@ -52,8 +64,9 @@ class App extends Component {
         style={{backgroundColor: this.state.pokemon ? this.state.pokemon.colors.main : 'white'}}
       >
 
-        {/* {this.state.pokemon && <PokeCard pokemon={pokemon}/>}
-        {this.state.pokemon && <SearchInput colors={pokemon.colors} input={input} setInput={setInput} formatPokename={formatPokename}/>} */}
+        {this.state.pokemon && <PokeCard pokemon={this.state.pokemon}/>}
+
+        {this.state.pokemon && <SearchInput colors={this.state.pokemon.colors} input={this.state.input} setInput={this.setInput} formatPokename={this.formatPokename}/>}
       </div>
     )
   }
