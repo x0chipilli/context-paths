@@ -2,24 +2,24 @@ import {useContext} from 'react'
 import { PokemonContext } from '../PokemonContext'
 import './PokeCard.css'
 
-function PokeCard(props) {
-  const [pokename, setPokename] = useContext(PokemonContext)
+function PokeCard() {
+  const {pokemon} = useContext(PokemonContext)
 
   return (
     <div className="pokecard-container">
-      {/* <div className="card-bg"
-        style={{backgroundColor: props.pokemon.colors.sec}}
+      <div className="card-bg"
+        style={{backgroundColor: pokemon.colors.sec}}
       >
         <span className="card-id"
-          style={{color: props.pokemon.colors.main}}
+          style={{color: pokemon.colors.main}}
         >
-          #{props.pokemon.id}
+          #{pokemon.id}
         </span>
-        <img src={props.pokemon.artwork} alt=""/>
+        <img src={pokemon.artwork} alt=""/>
       </div>
-      <h2 style={{color: props.pokemon.colors.text}}>
-        {props.pokemon.name}
-      </h2> */}
+      <h2 style={{color: pokemon.colors.text}}>
+        {pokemon.name}
+      </h2>
     </div>
   )
 }
